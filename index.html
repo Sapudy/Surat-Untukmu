@@ -136,32 +136,6 @@
             opacity: 0.8;
         }
 
-        .result {
-            margin-top: 22px;
-            padding: 18px;
-            border-radius: 17px;
-            background: #fff1f5;
-            color: #71334f;
-            font-size: 15px;
-            line-height: 1.65;
-            animation: appear 350ms ease both;
-        }
-
-        .result strong {
-            display: block;
-            margin-bottom: 5px;
-            color: #be185d;
-            font-size: 19px;
-        }
-
-        .result p {
-            margin: 0;
-        }
-
-        .result[hidden] {
-            display: none;
-        }
-
         .footer {
             margin: 22px 0 0;
             color: #9a95aa;
@@ -208,56 +182,25 @@
             <input id="name" name="name" type="text" placeholder="Contoh: Alya" maxlength="50" autocomplete="given-name" required>
             <button id="submit-button" type="submit">Buka pesan manis 💖</button>
         </form>
-        <div class="result" id="result" role="status" aria-live="polite" hidden>
-            <strong id="result-title"></strong>
-            <p id="compliment"></p>
-            <button id="another-button" type="button" style="margin-top: 16px;">Gombalan lainnya ✨</button>
-        </div>
         <p class="footer">Web Gabut · Dibuat khusus untuk bikin senyum ✨</p>
     </main>
 
     <script>
         const nameForm = document.querySelector('#name-form');
         const nameInput = document.querySelector('#name');
-        const result = document.querySelector('#result');
-        const resultTitle = document.querySelector('#result-title');
-        const compliment = document.querySelector('#compliment');
-        const compliments = [
-            'Kamu tahu nggak, sejak kenal kamu, definisi hari yang indah jadi punya nama.',
-            'Kalau senyum kamu jadi bintang, langit malam pasti kalah terang.',
-            'Aku tadinya mau cari kata-kata paling manis, tapi ternyata namamu sudah cukup.',
-            'Kamu itu seperti lagu favorit: selalu berhasil bikin hariku ingin diulang.',
-            'Katanya jangan melihat seseorang dari penampilannya, tapi susah juga kalau senyummu semenarik itu.'
-        ];
-        let previousCompliment = -1;
-
-        function showCompliment() {
-            const name = nameInput.value.trim();
-            let nextCompliment = Math.floor(Math.random() * compliments.length);
-
-            if (compliments.length > 1) {
-                while (nextCompliment === previousCompliment) {
-                    nextCompliment = Math.floor(Math.random() * compliments.length);
-                }
-            }
-
-            previousCompliment = nextCompliment;
-            resultTitle.textContent = `Hai, ${name}! 💕`;
-            compliment.textContent = compliments[nextCompliment];
-            result.hidden = false;
-        }
 
         nameForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            if (!nameInput.value.trim()) {
-                nameInput.focus();
-                return;
-            }
+            const name = nameInput.value.trim();
+            if (!name) return;
 
-            showCompliment();
+            const complimentIndex = Math.floor(Math.random() * 5);
+            const params = new URLSearchParams({
+                name,
+                compliment: String(complimentIndex)
+            });
+            window.location.href = `hasil.html?${params.toString()}`;
         });
-
-        document.querySelector('#another-button').addEventListener('click', showCompliment);
     </script>
 </body>
 </html>
