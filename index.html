@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fff0f5">
+    <title>Gombalan Manis | Web Gabut</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            overflow-x: hidden;
+            color: #3b1e2e;
+            background:
+                radial-gradient(ellipse at 12% 18%, rgba(251, 146, 180, 0.38), transparent 32%),
+                radial-gradient(ellipse at 88% 82%, rgba(196, 181, 253, 0.58), transparent 35%),
+                linear-gradient(135deg, #fff1f2 0%, #fdf2f8 52%, #f5f3ff 100%);
+            font-family: Inter, 'Segoe UI', Arial, sans-serif;
+        }
+
+        .card {
+            width: min(100%, 460px);
+            padding: 42px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.82);
+            box-shadow: 0 24px 70px rgba(49, 46, 129, 0.15);
+            text-align: center;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            animation: appear 600ms ease both;
+        }
+
+        .brand {
+            display: grid;
+            width: 62px;
+            height: 62px;
+            margin: 0 auto 22px;
+            place-items: center;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #fb7185, #a855f7);
+            box-shadow: 0 10px 24px rgba(124, 58, 237, 0.25);
+            font-size: 30px;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: #db2777;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            color: #3b1e2e;
+            font-size: clamp(30px, 8vw, 38px);
+            letter-spacing: -1.7px;
+            line-height: 1.1;
+        }
+
+        .description {
+            margin: 0 auto 26px;
+            color: #6b6680;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .name-label {
+            display: block;
+            margin: 0 0 9px;
+            color: #514052;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            min-height: 52px;
+            margin-bottom: 14px;
+            padding: 0 15px;
+            border: 1px solid #f1c9d9;
+            border-radius: 14px;
+            outline: none;
+            color: #3b1e2e;
+            background: rgba(255, 255, 255, 0.88);
+            font: inherit;
+            transition: border-color 180ms ease, box-shadow 180ms ease;
+        }
+
+        input::placeholder {
+            color: #aa91a0;
+        }
+
+        input:focus {
+            border-color: #ec4899;
+            box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.13);
+        }
+
+        button {
+            width: 100%;
+            min-height: 54px;
+            border: 0;
+            border-radius: 15px;
+            color: white;
+            background: linear-gradient(100deg, #f43f75, #9333ea);
+            box-shadow: 0 10px 22px rgba(124, 58, 237, 0.22);
+            cursor: pointer;
+            font: inherit;
+            font-size: 15px;
+            font-weight: 750;
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(124, 58, 237, 0.3);
+        }
+
+        button:focus-visible {
+            outline: 3px solid rgba(219, 39, 119, 0.35);
+            outline-offset: 3px;
+        }
+
+        button:disabled {
+            cursor: wait;
+            opacity: 0.8;
+        }
+
+        .result {
+            margin-top: 22px;
+            padding: 18px;
+            border-radius: 17px;
+            background: #fff1f5;
+            color: #71334f;
+            font-size: 15px;
+            line-height: 1.65;
+            animation: appear 350ms ease both;
+        }
+
+        .result strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #be185d;
+            font-size: 19px;
+        }
+
+        .result p {
+            margin: 0;
+        }
+
+        .result[hidden] {
+            display: none;
+        }
+
+        .footer {
+            margin: 22px 0 0;
+            color: #9a95aa;
+            font-size: 12px;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 34px 25px;
+                border-radius: 25px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <div class="brand" aria-hidden="true">💌</div>
+        <p class="eyebrow">Pesan spesial buat kamu</p>
+        <h1>Kasih tahu namamu</h1>
+        <p class="description" id="description">
+            Masukkan nama dulu, ada pesan manis yang mungkin bikin kamu senyum-senyum sendiri. 😉
+        </p>
+
+        <form id="name-form">
+            <label class="name-label" for="name">Nama kamu</label>
+            <input id="name" name="name" type="text" placeholder="Contoh: Alya" maxlength="50" autocomplete="given-name" required>
+            <button id="submit-button" type="submit">Buka pesan manis 💖</button>
+        </form>
+        <div class="result" id="result" role="status" aria-live="polite" hidden>
+            <strong id="result-title"></strong>
+            <p id="compliment"></p>
+            <button id="another-button" type="button" style="margin-top: 16px;">Gombalan lainnya ✨</button>
+        </div>
+        <p class="footer">Web Gabut · Dibuat khusus untuk bikin senyum ✨</p>
+    </main>
+
+    <script>
+        const nameForm = document.querySelector('#name-form');
+        const nameInput = document.querySelector('#name');
+        const result = document.querySelector('#result');
+        const resultTitle = document.querySelector('#result-title');
+        const compliment = document.querySelector('#compliment');
+        const compliments = [
+            'Kamu tahu nggak, sejak kenal kamu, definisi hari yang indah jadi punya nama.',
+            'Kalau senyum kamu jadi bintang, langit malam pasti kalah terang.',
+            'Aku tadinya mau cari kata-kata paling manis, tapi ternyata namamu sudah cukup.',
+            'Kamu itu seperti lagu favorit: selalu berhasil bikin hariku ingin diulang.',
+            'Katanya jangan melihat seseorang dari penampilannya, tapi susah juga kalau senyummu semenarik itu.'
+        ];
+        let previousCompliment = -1;
+
+        function showCompliment() {
+            const name = nameInput.value.trim();
+            let nextCompliment = Math.floor(Math.random() * compliments.length);
+
+            if (compliments.length > 1) {
+                while (nextCompliment === previousCompliment) {
+                    nextCompliment = Math.floor(Math.random() * compliments.length);
+                }
+            }
+
+            previousCompliment = nextCompliment;
+            resultTitle.textContent = `Hai, ${name}! 💕`;
+            compliment.textContent = compliments[nextCompliment];
+            result.hidden = false;
+        }
+
+        nameForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (!nameInput.value.trim()) {
+                nameInput.focus();
+                return;
+            }
+
+            showCompliment();
+        });
+
+        document.querySelector('#another-button').addEventListener('click', showCompliment);
+    </script>
+</body>
+</html>
